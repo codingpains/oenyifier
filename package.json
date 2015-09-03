@@ -1,0 +1,36 @@
+{
+  "name": "oenyifier",
+  "version": "0.0.1",
+  "description": "A tool for smart image resizing",
+  "scripts": {
+    "build": "webpack --progress --profile --colors",
+    "dev": "webpack-dev-server --progress --profile --colors --hot"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/codingpains/oenyifier"
+  },
+  "keywords": [
+    "image",
+    "resizing",
+    "dynamic",
+    "react",
+    "reactjs"
+  ],
+  "author": "Gustavo Ortiz",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/codingpains/oenyifier/issues"
+  },
+  "homepage": "https://github.com/codingpains/oenyifier",
+  "devDependencies": {
+    "react-hot-loader": "^1.2.7",
+    "webpack": "^1.9.6",
+    "webpack-dev-server": "^1.8.2"
+  },
+  "dependencies": {
+    "busboy": "^0.2.11",
+    "oenyi": "^0.0.x",
+    "react": "^0.13.0"
+  }
+}
