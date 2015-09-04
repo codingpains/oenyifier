@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "busboy": "^0.2.11",
-    "oenyi": "^0.0.x",
+    "oenyi": "^0.1.x",
     "react": "^0.13.0"
   }
 }

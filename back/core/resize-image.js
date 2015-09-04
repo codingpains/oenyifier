@@ -41,7 +41,7 @@ var validateRequest = function(data) {
     errors.push(new BadRequestError('invalid value for resize height'));
   }
 
-  if (data.method.toLowerCase() !== 'cover' && data.method.toLowerCase() !== 'contain') {
+  if (['cover', 'fit', 'contain'].indexOf(data.method.toLowerCase()) === -1) {
     errors.push(new BadRequestError('invalid value for resize method'));
   }
 
