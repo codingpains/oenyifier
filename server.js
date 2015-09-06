@@ -2,7 +2,7 @@ var http = require('http');
 var url = require('url');
 var Busboy = require('busboy');
 var router = require('./router');
-var port = 3000;
+var port = process.env.PORT || 3000;
 
 var multipart = function(req, done) {
   var busboy = new Busboy({ headers: req.headers });
