@@ -4,6 +4,8 @@ var Busboy = require('busboy');
 var router = require('./router');
 var port = process.env.PORT || 3000;
 
+console.log('Starting sever on port ' + port);
+
 var multipart = function(req, done) {
   var busboy = new Busboy({ headers: req.headers });
   var buffers = [];
@@ -32,6 +34,7 @@ var multipart = function(req, done) {
 
 var requestHandler = function(req, res) {
   var path = url.parse(req.url).pathname;
+  console.log('Request to ' + req.method + ' ' + path);
 
   if (req.method === 'POST' && req.headers['content-type']) {
     multipart(req, function() {
