@@ -33,11 +33,11 @@ var multipart = function(req, done) {
 };
 
 var cors = function(req, res) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE, CONNECT');
-  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
-  res.setHeader('Access-Control-Allow-Credentials', true);
-  res.setHeader('Access-Control-Max-Age', '86400');
+  req.setHeader('Access-Control-Allow-Origin', '*');
+  req.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE, CONNECT');
+  req.setHeader('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
+  req.setHeader('Access-Control-Allow-Credentials', true);
+  req.setHeader('Access-Control-Max-Age', '86400');
 }
 
 var requestHandler = function(req, res) {
