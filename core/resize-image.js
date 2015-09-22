@@ -1,13 +1,15 @@
 var oenyi = require('oenyi');
 var BadRequestError = require('./errors').BadRequestError;
 
-var resizeImage = function(params, fn) {
+var resizeImage = function(params, callback) {
   var resizeArgs = params.resize;
-
   oenyi(params.image)
     .toJPG()
     .resize(resizeArgs)
-    .exec(fn);
+    .exec(function(error, image) {
+      if (error) return callback(error);
+      callback(null, image.toString('base64'));
+    });
 };
 
 var imageResizingFailed = function(err, res) {
@@ -62,8 +64,8 @@ module.exports = function(req, res) {
   params.resize.method = data.method.toLowerCase();
 
   if (req.body.image) {
-    resizeImage(params, function(err, imageBuffer) {
-      if (err) return imageResizingFailed(err, res);
+    resizeImage(params, function(error, imageBuffer) {
+      if (error) return imageResizingFailed(error, res);
       res.writeHead(200, {'Connection': 'close', 'Content-Type': 'image/jpeg'});
       res.end(imageBuffer);
     });

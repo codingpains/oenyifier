@@ -23,6 +23,7 @@
   "homepage": "https://github.com/codingpains/oenyifier",
   "dependencies": {
     "busboy": "^0.2.11",
-    "oenyi": "^0.1.x"
+    "cors": "^2.7.1",
+    "oenyi": "^0.2.1"
   }
 }

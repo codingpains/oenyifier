@@ -1,6 +1,7 @@
 var http = require('http');
 var url = require('url');
 var Busboy = require('busboy');
+var cors = require('cors')();
 var router = require('./router');
 var port = process.env.PORT || 3000;
 
@@ -32,23 +33,15 @@ var multipart = function(req, done) {
   req.pipe(busboy);
 };
 
-var cors = function(req, res) {
-  req.setHeader('Access-Control-Allow-Origin', '*');
-  req.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE, CONNECT');
-  req.setHeader('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
-  req.setHeader('Access-Control-Allow-Credentials', true);
-  req.setHeader('Access-Control-Max-Age', '86400');
-}
-
 var requestHandler = function(req, res) {
   var path = url.parse(req.url).pathname;
   console.log('Request to ' + req.method + ' ' + path);
 
-  cors(req, res);
-
   if (req.method === 'POST' && req.headers['content-type']) {
     multipart(req, function() {
-      router(req.method.toUpperCase(), path, req, res);
+      cors(req, res, function() {
+        router(req.method.toUpperCase(), path, req, res);
+      });
     });
   } else {
     router(req.method.toUpperCase(), path, req, res);
